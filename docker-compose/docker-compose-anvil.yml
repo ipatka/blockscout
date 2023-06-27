@@ -23,18 +23,19 @@ services:
       - smart-contract-verifier
       - redis_db
     image: blockscout/blockscout:${DOCKER_TAG:-latest}
-    build:
-      context: ..
-      dockerfile: ./docker/Dockerfile
-      args:
-        CACHE_EXCHANGE_RATES_PERIOD: ""
-        API_V1_READ_METHODS_DISABLED: "false"
-        DISABLE_WEBAPP: "false"
-        API_V1_WRITE_METHODS_DISABLED: "false"
-        CACHE_TOTAL_GAS_USAGE_COUNTER_ENABLED: ""
-        CACHE_ADDRESS_WITH_BALANCES_UPDATE_INTERVAL: ""
-        ADMIN_PANEL_ENABLED: ""
-        RELEASE_VERSION: 5.2.0
+    # build:
+    #   context: ..
+    #   dockerfile: ./docker/Dockerfile
+    #   args:
+    #     CACHE_EXCHANGE_RATES_PERIOD: ""
+    #     API_V1_READ_METHODS_DISABLED: "false"
+    #     DISABLE_WEBAPP: "false"
+    #     API_V1_WRITE_METHODS_DISABLED: "false"
+    #     CACHE_TOTAL_GAS_USAGE_COUNTER_ENABLED: ""
+    #     CACHE_ADDRESS_WITH_BALANCES_UPDATE_INTERVAL: ""
+    #     ADMIN_PANEL_ENABLED: ""
+    #     RELEASE_VERSION: 5.2.0
+    pull_policy: always
     restart: always
     stop_grace_period: 5m
     container_name: 'blockscout'
@@ -45,6 +46,16 @@ services:
       - 'host.docker.internal:host-gateway'
     env_file:
       -  ./envs/common-blockscout.env
+    environment:
+        ETHEREUM_JSONRPC_VARIANT: 'geth'
+        ETHEREUM_JSONRPC_HTTP_URL: http://host.docker.internal:8545/
+        ETHEREUM_JSONRPC_WS_URL: ws://host.docker.internal:8545/
+        INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: 'true'
+        DATABASE_URL: postgresql://postgres:@host.docker.internal:7432/blockscout?ssl=false
+        ECTO_USE_SSL: 'false'
+        FIRST_BLOCK: 17493916
+        CHAIN_ID: 31337
+        # SECRET_KEY_BASE: '56NtB48ear7+wMSf0IQuWDAAazhpb31qyc7GiyspBP2vh7t5zlCsF5QDv76chXeN'
     ports:
       - 4000:4000
     volumes:
