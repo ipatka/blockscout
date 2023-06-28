@@ -11,14 +11,8 @@ services:
       file: ./services/docker-compose-db.yml
       service: db
 
-  anvil:
-    extends:
-      file: ./services/docker-compose-foundry.yml
-      service: anvil
-
   blockscout:
     depends_on:
-      - anvil
       - db
       - smart-contract-verifier
       - redis_db
