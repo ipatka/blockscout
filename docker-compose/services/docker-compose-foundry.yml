@@ -3,7 +3,7 @@ version: '3.8'
 services:
   anvil:
     image: ghcr.io/foundry-rs/foundry:${FOUNDRY_DOCKER_TAG:-latest}
-    restart: always
+    # restart: always
     container_name: 'foundry'
     command: tail -f /dev/null
     # command: anvil --fork-url  https://eth-mainnet.alchemyapi.io/v2/EY6V18pyHpLFp4QHTF4Mv88NFaPsw83U --fork-block-number 17452289 --block-time 10
