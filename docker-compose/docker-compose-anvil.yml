@@ -60,8 +60,8 @@ services:
         INDEXER_TOKEN_BALANCES_BATCH_SIZE: 10
         DATABASE_URL: postgresql://postgres:@host.docker.internal:7432/blockscout?ssl=false
         ECTO_USE_SSL: 'false'
-        FIRST_BLOCK: 17575918
-        TRACE_FIRST_BLOCK: 17575918
+        FIRST_BLOCK: 17579090
+        TRACE_FIRST_BLOCK: 17579090
         CHAIN_ID: 31337
         # SECRET_KEY_BASE: '56NtB48ear7+wMSf0IQuWDAAazhpb31qyc7GiyspBP2vh7t5zlCsF5QDv76chXeN'
     ports:
