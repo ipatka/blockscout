@@ -1,5 +1,5 @@
 #! /bin/bash
-echo "***RESTART FOUNDRY***"
+echo "***FOUNDRY HEALTH CHECK***"
 
 if ! timeout 5 cast block; then
     echo "Anvil NOK"
@@ -8,7 +8,7 @@ if ! timeout 5 cast block; then
     FORK_BLOCK=$(($LATEST_BLOCK+1)) && \
     echo "Restarting At"
     echo $FORK_BLOCK
-    FORK_BLOCK=$FORK_BLOCK docker compose -f $BLOCKSCOUT/docker-compose/services/docker-compose-anvil.yml up -d
+    FORK_BLOCK=$FORK_BLOCK docker compose -f $BLOCKSCOUT/docker-compose/services/docker-compose-foundry.yml up -d
 else
     echo "Anvil OK"
 fi
