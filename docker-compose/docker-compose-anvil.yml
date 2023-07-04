@@ -64,7 +64,9 @@ services:
         # TRACE_FIRST_BLOCK: 17599720
         # BLOCK_RANGES: '4719568..4719569,17603201..latest'
         BLOCK_RANGES: ${BLOCK_RANGES}
-        CHAIN_ID: 31337
+        SUBNETWORK: 'Security Alliance Chain'
+        # CHAIN_ID: 31337
+        CHAIN_ID: 1
         # SECRET_KEY_BASE: '56NtB48ear7+wMSf0IQuWDAAazhpb31qyc7GiyspBP2vh7t5zlCsF5QDv76chXeN'
     ports:
       - 4000:4000

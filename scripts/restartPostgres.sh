@@ -4,14 +4,14 @@ echo "***FOUNDRY BLOCKSCOUT RESTART***"
 # LATEST_BLOCK_HEX=`curl http://localhost:80/api\?module\=block\&action\=eth_block_number | jq .result | tr -d '"' | cut -c 3-` && \
 # LATEST_BLOCK=`echo $(( 16#$LATEST_BLOCK_HEX ))` && \
 # FORK_BLOCK=$(($LATEST_BLOCK+1)) && \
-FORK_BLOCK=17604874 && \ 
+FORK_BLOCK=17605428 && \ 
 echo "Restarting At $FORK_BLOCK" && \
 
 INDEX_BLOCK=$(($FORK_BLOCK + 1)) && \
 echo "Indexing At $INDEX_BLOCK" && \
 BLOCK_RANGES="$BASE_RANGE,$INDEX_BLOCK..latest" && \
 echo "With Range $BLOCK_RANGES" && \
-FORK_BLOCK=$FORK_BLOCK BLOCK_RANGES=$BLOCK_RANGES docker compose -f $BLOCKSCOUT/docker-compose/docker-compose-anvil.yml up -d && \
+FORK_BLOCK=$FORK_BLOCK BLOCK_RANGES=$BLOCK_RANGES docker compose -f $BLOCKSCOUT/docker-compose/docker-compose-anvil.yml up --force-recreate db -d && \
 
 RPC_URL=http://localhost:80/rpc/ && \
 
