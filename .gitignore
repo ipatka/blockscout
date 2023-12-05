@@ -60,3 +60,5 @@ dump.rdb
 .vscode
 
 **.dec**
+
+.env
